@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TempahanMakanan</string>
+    <string name="log_masuk_txt">Log Masuk</string>
+    <string name="username_txt">Username</string>
+    <string name="password_txt">Password</string>
+    <string name="btn_txt">Log Masuk</string>
+</resources>
