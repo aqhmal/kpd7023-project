@@ -32,14 +32,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void populateFoodList() {
-        Food nasi_goreng_ayam = new Food("Nasi Goreng Ayam", R.drawable.nasi_goreng_kampung);
-        Food nasi_pattaya = new Food("Nasi Goreng Pattaya", R.drawable.nasi_goreng_kampung);
+        Food nasi_goreng_ayam = new Food("Nasi Goreng Ayam", R.drawable.nasi_goreng_ayam);
+        Food nasi_pattaya = new Food("Nasi Goreng Pattaya", R.drawable.nasi_goreng_pattaya);
         Food nasi_kampung = new Food("Nasi Goreng Kampung", R.drawable.nasi_goreng_kampung);
-        Food maggi_goreng = new Food("Maggi Goreng", R.drawable.nasi_goreng_kampung);
+        Food maggi_goreng = new Food("Maggi Goreng", R.drawable.maggi_goreng);
+        Food mee_goreng = new Food("Mee Goreng", R.drawable.mee_goreng);
+        Food kuey_teow_goreng = new Food("Kuey Teow Goreng", R.drawable.kuey_teow_goreng);
+        Food roti_canai = new Food("Roti Canai", R.drawable.roti_canai);
         foodList.add(nasi_goreng_ayam);
         foodList.add(nasi_pattaya);
         foodList.add(nasi_kampung);
         foodList.add(maggi_goreng);
+        foodList.add(mee_goreng);
+        foodList.add(kuey_teow_goreng);
+        foodList.add(roti_canai);
         foodAdapter.notifyDataSetChanged();
     }
 }
