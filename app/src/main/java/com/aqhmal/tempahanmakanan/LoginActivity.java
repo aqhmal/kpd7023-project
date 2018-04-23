@@ -1,5 +1,6 @@
 package com.aqhmal.tempahanmakanan;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,12 +10,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import java.util.Objects;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class LoginActivity extends AppCompatActivity {
+    // Variables declaration
     EditText username, password;
     Button loginBtn;
     SweetAlertDialog alert;
@@ -22,15 +23,15 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        getSupportActionBar().hide(); // Hide action bar
         setContentView(R.layout.activity_login);
-
+        // Variables initialization
         username = findViewById(R.id.unameInput);
         password = findViewById(R.id.passInput);
         loginBtn = findViewById(R.id.loginBtn);
-
+        // Declare and initialize current login attempt
         final int[] attempt = {0};
-
+        // Login button listener
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -38,13 +39,14 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     String uname = username.getText().toString();
                     String pass = password.getText().toString();
-
+                    // Check if username or password text are empty
                     if(TextUtils.isEmpty((uname))) {
                         throw new Exception("Username cannot be empty");
                     }
                     if(TextUtils.isEmpty(pass)) {
                         throw new Exception("Password cannot be empty");
                     }
+                    // Incorrect login
                     if(!Objects.equals(uname, "root") || !Objects.equals(pass, "root")) {
                         // Increment attempt
                         ++attempt[0];
@@ -56,12 +58,23 @@ public class LoginActivity extends AppCompatActivity {
                             throw new Exception("Invalid credential");
                         }
                     } else {
+                        // Login successful
                         alert = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.SUCCESS_TYPE);
-                        alert.setTitleText("Good job!");
-                        alert.setContentText("You clicked the button!");
+                        alert.setContentText("Login Success!");
+                        alert.setCancelable(false);
+                        alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                // Go to next activity
+                                Intent main_activity = new Intent(LoginActivity.this, MainActivity.class);
+                                finish(); // Kill current activity
+                                startActivity(main_activity);
+                            }
+                        });
                         alert.show();
                     }
                 } catch(Exception e) {
+                    // Error sweetalert
                     alert = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE);
                     alert.setTitleText("Error");
                     alert.setContentText(e.getMessage() + "!");
