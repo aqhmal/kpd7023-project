@@ -1,4 +1,4 @@
-package com.aqhmal.tempahanmakanan;
+package com.aqhmal.tempahanmakanan.model;
 
 public class Food {
     public int foodImage;
