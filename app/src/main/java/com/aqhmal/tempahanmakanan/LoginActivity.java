@@ -20,10 +20,11 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn;
     SweetAlertDialog alert;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide(); // Hide action bar
+        Objects.requireNonNull(getSupportActionBar()).hide(); // Hide action bar
         setContentView(R.layout.activity_login);
         // Variables initialization
         username = findViewById(R.id.unameInput);
@@ -46,18 +47,8 @@ public class LoginActivity extends AppCompatActivity {
                     if(TextUtils.isEmpty(pass)) {
                         throw new Exception("Password cannot be empty");
                     }
-                    // Incorrect login
-                    if(!Objects.equals(uname, "root") || !Objects.equals(pass, "root")) {
-                        // Increment attempt
-                        ++attempt[0];
-                        // Disable login button if attempt is 3
-                        if(attempt[0] >= 3) {
-                            loginBtn.setEnabled(false);
-                            throw new Exception("Login has been disabled");
-                        } else {
-                            throw new Exception("Invalid credential");
-                        }
-                    } else {
+                    // Login Success
+                    if(uname.equals("root") && pass.equals("root")) {
                         // Login successful
                         alert = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.SUCCESS_TYPE);
                         alert.setContentText("Login Success!");
@@ -72,6 +63,16 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
                         alert.show();
+                    } else {
+                        // Increment attempt
+                        ++attempt[0];
+                        // Disable login button if attempt is 3
+                        if(attempt[0] >= 3) {
+                            loginBtn.setEnabled(false);
+                            throw new Exception("Login has been disabled");
+                        } else {
+                            throw new Exception("Invalid credential");
+                        }
                     }
                 } catch(Exception e) {
                     // Error sweetalert
