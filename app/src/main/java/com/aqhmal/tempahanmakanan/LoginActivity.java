@@ -21,7 +21,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText username, password;
     Button loginBtn;
     SweetAlertDialog alert;
-    private ConstraintLayout constraintLayout;
     private AnimationDrawable animationDrawable;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -31,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide(); // Hide action bar
         setContentView(R.layout.activity_login);
         // Get layout view
-        constraintLayout = findViewById(R.id.constraintLayout);
+        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
         // initializing animation drawable by getting background from constraint layout
         animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
         // setting enter fade animation duration to 5 seconds
