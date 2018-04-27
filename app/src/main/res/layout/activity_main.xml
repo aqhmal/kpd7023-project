@@ -16,20 +16,20 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Log Keluar"
+            android:background="@color/colorAccent"
+            android:text="Log Out"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:background="@color/colorAccent"/>
+            android:textColor="@color/colorPrimary" />
 
         <Button
             android:id="@+id/orderBtn"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Tempah"
+            android:background="@color/colorAccent"
+            android:text="ORDER LIST"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:background="@color/colorAccent"/>
+            android:textColor="@color/colorPrimary" />
     </LinearLayout>
 
     <LinearLayout

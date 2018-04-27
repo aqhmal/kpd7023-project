@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SweetAlertDialog swa = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.WARNING_TYPE);
-                swa.setTitleText("Log Keluar");
-                swa.setContentText("Adakah anda ingin log keluar?");
-                swa.setConfirmText("Ya");
-                swa.setCancelText("Tidak");
+                swa.setTitleText("Log Out");
+                swa.setContentText("Do you want to log out?");
+                swa.setConfirmText("Yes");
+                swa.setCancelText("No");
                 swa.showCancelButton(true);
                 swa.setCancelable(false);
                 swa.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
@@ -89,11 +89,11 @@ public class MainActivity extends AppCompatActivity {
                 swa.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        sweetAlertDialog.setTitleText("Log Keluar");
-                        sweetAlertDialog.setContentText("Anda telah dilog keluar");
-                        sweetAlertDialog.setConfirmText("OK");
-                        sweetAlertDialog.showCancelButton(false);
-                        sweetAlertDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                        sweetAlertDialog.setTitleText("Log Out")
+                                        .setContentText("You\'ve been logged out!")
+                                        .setConfirmText("OK")
+                                        .showCancelButton(false)
+                                        .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
                         sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                             @Override
                             public void onClick(SweetAlertDialog sweetAlertDialog) {
@@ -105,6 +105,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 swa.show();
+            }
+        });
+
+        Button orderListBtn = findViewById(R.id.orderBtn);
+        orderListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent list = new Intent(MainActivity.this, CheckOutActivity.class);
+                startActivity(list);
             }
         });
 
