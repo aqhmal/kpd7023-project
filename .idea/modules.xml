@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\PC19\Desktop\kpd7023-project\TempahanMakanan.iml" filepath="C:\Users\PC19\Desktop\kpd7023-project\TempahanMakanan.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/kpd7023-project.iml" filepath="$PROJECT_DIR$/kpd7023-project.iml" />
     </modules>

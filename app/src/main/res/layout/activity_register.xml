@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.aqhmal.tempahanmakanan.LoginActivity"
+    tools:context="com.aqhmal.tempahanmakanan.RegisterActivity"
     android:background="@drawable/gradient_animation_list"
     android:id="@+id/constraintLayout">
 
@@ -28,60 +28,63 @@
         android:id="@+id/nameInput"
         android:layout_width="275sp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent"
         android:ems="10"
-        android:hint="@string/username_txt"
+        android:fontFamily="sans-serif"
+        android:hint="Name"
         android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.13"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <EditText
+        android:id="@+id/unameInput"
+        android:layout_width="275sp"
+        android:layout_height="wrap_content"
         android:backgroundTint="@color/colorAccent"
+        android:ems="10"
         android:fontFamily="sans-serif"
+        android:hint="@string/username_txt"
+        android:inputType="textPersonName"
         android:textColor="@color/colorAccent"
-        android:textColorHint="@color/colorAccent"/>
+        android:textColorHint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.32" />
 
     <EditText
         android:id="@+id/passInput"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent"
         android:ems="10"
+        android:fontFamily="sans-serif"
         android:hint="@string/password_txt"
         android:inputType="textPassword"
         android:textColor="@color/colorAccent"
         android:textColorHint="@color/colorAccent"
-        android:backgroundTint="@color/colorAccent"
-        android:fontFamily="sans-serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameInput"
-        app:layout_constraintVertical_bias="0.120000005" />
-
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="278dp"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_txt"
-        android:textColor="@color/colorPrimary"
-        android:background="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passInput"
-        app:layout_constraintVertical_bias="0.18" />
+        app:layout_constraintVertical_bias="0.31" />
 
     <Button
         android:id="@+id/registerBtn"
         android:layout_width="278dp"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
-        android:text="REGISTER"
+        android:text="@string/register_txt_btn"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passInput"
-        app:layout_constraintVertical_bias="0.467" />
-
+        app:layout_constraintVertical_bias="0.18" />
 </android.support.constraint.ConstraintLayout>

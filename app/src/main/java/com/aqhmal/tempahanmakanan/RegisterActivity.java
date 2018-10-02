@@ -1,7 +1,6 @@
 package com.aqhmal.tempahanmakanan;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
@@ -19,10 +18,9 @@ import java.util.Objects;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class LoginActivity extends AppCompatActivity {
-    // Variables declaration
-    EditText username, password;
-    Button loginBtn, registerBtn;
+public class RegisterActivity extends AppCompatActivity {
+    EditText name, username, password;
+    Button registerBtn;
     SweetAlertDialog alert;
     private AnimationDrawable animationDrawable;
     DBHelper DBHelper;
@@ -32,75 +30,58 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
         animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
         animationDrawable.setEnterFadeDuration(5000);
         animationDrawable.setExitFadeDuration(2000);
-        username = findViewById(R.id.nameInput);
+        name = findViewById(R.id.nameInput);
+        username = findViewById(R.id.unameInput);
         password = findViewById(R.id.passInput);
-        loginBtn = findViewById(R.id.loginBtn);
         registerBtn = findViewById(R.id.registerBtn);
         DBHelper = new DBHelper(this);
-        final int[] attempt = {0};
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 try {
+                    String iname = name.getText().toString();
                     String uname = username.getText().toString();
                     String pass = password.getText().toString();
+                    if(TextUtils.isEmpty(iname)) {
+                        throw new Exception("Name cannot be empty");
+                    }
                     if(TextUtils.isEmpty((uname))) {
                         throw new Exception("Username cannot be empty");
                     }
                     if(TextUtils.isEmpty(pass)) {
                         throw new Exception("Password cannot be empty");
                     }
+                    String query = "INSERT INTO " + TempahanMakanan.TABLE + "(" + TempahanMakanan.NAME + ", " + TempahanMakanan.USERNAME + ", "+TempahanMakanan.PASSWORD + ") VALUES('" + iname + "', '" + uname + "', '" + pass + "')";
                     SQLiteDatabase sqLiteDatabase = DBHelper.getWritableDatabase();
-                    Cursor cursor = sqLiteDatabase.rawQuery("SELECT " + TempahanMakanan.USERNAME + ", " +
-                            TempahanMakanan.PASSWORD + " FROM " + TempahanMakanan.TABLE + " WHERE " +
-                            TempahanMakanan.USERNAME + " = '" + uname + "' AND " + TempahanMakanan.PASSWORD + " = '" +
-                            pass + "'", null);
-                    if(cursor.getCount() > 0) {
-                        cursor.close();
-                        alert = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.SUCCESS_TYPE);
-                        alert.setContentText("Login Success!");
-                        alert.setCancelable(false);
-                        alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                Intent main_activity = new Intent(LoginActivity.this, MainActivity.class);
-                                finish();
-                                startActivity(main_activity);
-                            }
-                        });
-                        alert.show();
-                    } else {
-                        ++attempt[0];
-                        if (attempt[0] >= 3) {
-                            loginBtn.setEnabled(false);
-                            throw new Exception("Login has been disabled");
-                        } else {
-                            throw new Exception("Invalid credential");
+                    sqLiteDatabase.execSQL(query);
+                    sqLiteDatabase.close();
+                    alert = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                    alert.setContentText("Register Successful");
+                    alert.setCancelable(false);
+                    alert.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            Intent login_activity = new Intent(RegisterActivity.this, LoginActivity.class);
+                            finish();
+                            startActivity(login_activity);
                         }
-                    }
+                    });
+                    alert.show();
                 } catch(Exception e) {
                     // Error sweetalert
-                    alert = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE);
+                    alert = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE);
                     alert.setTitleText("Error");
                     alert.setContentText(e.getMessage() + "!");
                     alert.setCancelable(false);
                     alert.show();
                     alert.findViewById(R.id.confirm_button).setBackgroundColor(Color.parseColor("#fc5046"));
                 }
-            }
-        });
-
-        registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                finish();
-                startActivity(intent);
             }
         });
     }

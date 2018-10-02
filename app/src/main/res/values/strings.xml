@@ -4,4 +4,6 @@
     <string name="username_txt">Username</string>
     <string name="password_txt">Password</string>
     <string name="btn_txt">Login</string>
+    <string name="register_txt_btn">REGISTER</string>
+    <string name="name_txt">Name</string>
 </resources>
