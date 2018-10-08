@@ -18,7 +18,6 @@ public class CheckOutActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide(); // Hide action bar
         setContentView(R.layout.activity_check_out);
         TextView dummyTxt = findViewById(R.id.dummy);
-
         dummyTxt.setText("abc123");
     }
 }

@@ -58,9 +58,13 @@ public class RegisterActivity extends AppCompatActivity {
                         throw new Exception("Password cannot be empty");
                     }
                     String query = "INSERT INTO " + TempahanMakanan.TABLE + "(" + TempahanMakanan.NAME + ", " + TempahanMakanan.USERNAME + ", "+TempahanMakanan.PASSWORD + ") VALUES('" + iname + "', '" + uname + "', '" + pass + "')";
+
                     SQLiteDatabase sqLiteDatabase = DBHelper.getWritableDatabase();
+
                     sqLiteDatabase.execSQL(query);
+
                     sqLiteDatabase.close();
+
                     alert = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.SUCCESS_TYPE);
                     alert.setContentText("Register Successful");
                     alert.setCancelable(false);

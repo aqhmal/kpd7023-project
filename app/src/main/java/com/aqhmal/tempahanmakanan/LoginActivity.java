@@ -56,10 +56,12 @@ public class LoginActivity extends AppCompatActivity {
                         throw new Exception("Password cannot be empty");
                     }
                     SQLiteDatabase sqLiteDatabase = DBHelper.getWritableDatabase();
+
                     Cursor cursor = sqLiteDatabase.rawQuery("SELECT " + TempahanMakanan.USERNAME + ", " +
                             TempahanMakanan.PASSWORD + " FROM " + TempahanMakanan.TABLE + " WHERE " +
                             TempahanMakanan.USERNAME + " = '" + uname + "' AND " + TempahanMakanan.PASSWORD + " = '" +
                             pass + "'", null);
+
                     if(cursor.getCount() > 0) {
                         cursor.close();
                         alert = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.SUCCESS_TYPE);
